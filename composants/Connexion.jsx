@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios';
 
@@ -8,22 +8,41 @@ const Connexion = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const url = "http://localhost:4003/login/"
+
   const handleSubmit = async () => {
     if (email === '' || password === '') {
         alert("Tous les champs doivent être remplis.");
         return;
     }
+  }
 
-  const resp = await axios.post("http://localhost:4003/login/", { email, password}).then(reps => {
+  /*
+  const resp = await axios.post("http://localhost:4003/login/", { email, password}).then(resp => {
           console.log(resp);
           console.log(resp.data);
           alert("Vous vous êtes bien connecté.");
         })
         .catch(error => console.log(error));
   };
+  */
+ /*
+  useEffect(() => {
+    axios.post(url).then(res => {
+      setEmail(res.data.email);
+      setPassword(res.data.password);
+      alert("Vous vous êtes bien connecté.")
+    })
+  }, []);
+  */
+
+  
+  
+
+
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-      <View style={{marginVertical : 100}}>
+      <View style={{marginHorizontal: 20}}>
         <Text style={styles.textLogIn}>Se connecter</Text>
         <View>
           <Text style={styles.textStyle}>Email :</Text>
@@ -33,7 +52,7 @@ const Connexion = ({navigation}) => {
           <Text style={styles.textStyle}>Mot de passe :</Text>
           <TextInput style={styles.textInputStyle} value={password} onChangeText={text => setPassword(text)} secureTextEntry={true}/>
         </View>
-        <TouchableOpacity onPress={handleSubmit} style={styles.buttonStyle}>
+        <TouchableOpacity onPress={() => {}} style={styles.buttonStyle}>
           <Text style={styles.buttonText}>Se connecter</Text>
         </TouchableOpacity>
         <View style={styles.textRegister}>

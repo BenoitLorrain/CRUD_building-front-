@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
@@ -14,6 +14,7 @@ const Register = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
 
+    /*
     const handleSubmit = async () => {
         if (email === '' || password === '') {
             alert("Tous les champs doivent être remplis.");
@@ -26,11 +27,21 @@ const Register = ({ navigation }) => {
         })
         .catch(error => console.log(error));
     }
+    */
+   /*
+    useEffect(() => {
+      axios.post(url).then(res => {
+        setEmail(res.data.email);
+        setPassword(res.data.password);
+        alert("Vous vous êtes bien connecté.")
+      })
+    }, [])
+    */
     
 
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container} >
-      <View style={{marginVertical : 100}}>
+      <View style={{marginHorizontal: 20}}>
         <Text style={styles.textRegister}>Créer un compte</Text>
         <View>
           <Text style={styles.textStyle}>Email :</Text>
@@ -40,7 +51,7 @@ const Register = ({ navigation }) => {
           <Text style={styles.textStyle}>Mot de passe :</Text>
           <TextInput style={styles.textInputStyle}  onChangeText={text => setPassword(text)} secureTextEntry={true}/>
         </View>
-        <TouchableOpacity onPress={handleSubmit} style={styles.buttonStyle}>
+        <TouchableOpacity onPress={() => {}} style={styles.buttonStyle}>
           <Text style={styles.buttonText}>Valider</Text>
         </TouchableOpacity>
         <View style={styles.textAlreadyHaveAccount}>
